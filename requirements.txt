@@ -1,0 +1,8 @@
+joblib==1.4.2
+mo_sql_parsing==11.663.25011
+numpy==2.2.1
+orjson==3.10.14
+pandas==2.2.3
+psycopg2_binary==2.9.10
+scikit_learn==1.6.1
+tqdm==4.67.1
