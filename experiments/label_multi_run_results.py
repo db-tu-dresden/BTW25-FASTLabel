@@ -104,12 +104,12 @@ def label_results(config: LabelConfig):
 
 def run():
     parser = argparse.ArgumentParser(description="")
-    parser.add_argument("queries", type=str, help="")
-    parser.add_argument("-a", "--archive", type=str, help="")
-    parser.add_argument("-o", "--output", default=None, help="")
-    parser.add_argument("-c", "--config", default=None, help="")
-    parser.add_argument("-db", "--database", choices=["imdb", "stack_overflow"], help="")
-    parser.add_argument("-ud", "--use-default", action="store_true", help="")
+    parser.add_argument("queries", type=str, help="<Path/to/queries/>")
+    parser.add_argument("-a", "--archive", type=str, help="<Prediction/archive/to/label.csv>")
+    parser.add_argument("-o", "--output", default=None, help="<Labeled/output/path.csv>")
+    parser.add_argument("-c", "--config", default=None, help="<Database_config_path/>")
+    parser.add_argument("-db", "--database", choices=["imdb", "stack_overflow"], help="Database that was used.")
+    parser.add_argument("-ud", "--use-default", action="store_true", help="Whether or not to use default (six) hints.")
     args = parser.parse_args()
 
     if not os.path.exists(args.queries):

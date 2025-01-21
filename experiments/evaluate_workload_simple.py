@@ -208,17 +208,21 @@ def test_models(context_test_features, context_models):
 
 def run():
     parser = argparse.ArgumentParser(description="")
-    parser.add_argument("queries", default=None, help="")
-    parser.add_argument("-o", "--output", default=None, help="")
-    parser.add_argument("-c", "--config", default=None, help="")
-    parser.add_argument("-db", "--database", choices=["imdb", "stack_overflow"], help="")
-    parser.add_argument("-a", "--archive", default=None, help="Path to archive.")
-    parser.add_argument("-exec", "--execute-queries", action="store_true", help="Unused right now")
-    parser.add_argument("-uc", "--use-contexts", action="store_true", help="")
-    parser.add_argument("-s", "--seed", type=int, default=47, help="")
-    parser.add_argument("-ts", "--train-size", type=float, required=True, help="")
-    parser.add_argument("-stats", "--statistics", default=None, help="")
-    parser.add_argument("-ecp", "--encoded-query-path", default=None, help="")
+    parser.add_argument("queries", default=None, help="<Path/to/queries/>")
+    parser.add_argument("-o", "--output", default=None, help="<Output/path.csv>")
+    parser.add_argument("-c", "--config", default=None, help="<Database_config_path/>")
+    parser.add_argument("-db", "--database", choices=["imdb", "stack_overflow"], help="Database that was used.")
+    parser.add_argument("-a", "--archive", default=None, help="<Path/to/archive.csv>. The archive is retrieved "
+                                                              "through labeling.")
+    parser.add_argument("-exec", "--execute-queries", action="store_true", help="Unused right now.")
+    parser.add_argument("-uc", "--use-contexts", action="store_true", help="Use FG contextualization. "
+                                                                           "If disabled, one global context is used.")
+    parser.add_argument("-s", "--seed", type=int, default=47, help="Seed to use for reproducibility.")
+    parser.add_argument("-ts", "--train-size", type=float, required=True, help="Training size to use from "
+                                                                               "the given queries.")
+    parser.add_argument("-stats", "--statistics", default=None, help="<Path/to/statistics/>")
+    parser.add_argument("-ecp", "--encoded-query-path", default=None, help="Optional: <path/to/pre-encoded/"
+                                                                           "queries.json")
     args = parser.parse_args()
 
     if not os.path.exists(args.config):

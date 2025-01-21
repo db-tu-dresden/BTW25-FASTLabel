@@ -295,18 +295,21 @@ def run():
     parser = argparse.ArgumentParser(description="Generate physical operator labels for input queries and save to json")
 
     parser.add_argument("queries", help="Directory in which .sql-queries are located")
-    parser.add_argument("-o", "--output", required=True, help="Output dictionary save name")
+    parser.add_argument("-o", "--output", required=True, help="Output csv save name")
     parser.add_argument("-c", "--config", required=True, help="Path to config file.")
 
     parser.add_argument("-db", "--database", required=True, choices=["imdb", "stack_overflow"], help="")
-    parser.add_argument("-ud", "--use-default", action="store_true", help="")
+    parser.add_argument("-ud", "--use-default", action="store_true", help="Whether or not to use default (six) hints.")
 
-    parser.add_argument("-ue", "--use-experience", action="store_true", help="")
-    parser.add_argument("-ues", "--use-early-stopping", action="store_true", help="")
-    parser.add_argument("-uhr", "--use-hint-removal", action="store_true", help="")
-    parser.add_argument("-ulr", "--use-level-restriction", action="store_true", help="")
+    parser.add_argument("-ue", "--use-experience", action="store_true", help="Whether or not to use experience.")
+    parser.add_argument("-ues", "--use-early-stopping", action="store_true", help="Whether or not to use "
+                                                                                  "early stopping.")
+    parser.add_argument("-uhr", "--use-hint-removal", action="store_true", help="Whether or not to use hint removal.")
+    parser.add_argument("-ulr", "--use-level-restriction", action="store_true", help="Whether or not to use "
+                                                                                     "level restriction.")
 
-    parser.add_argument("-m", "--mode", default="sub", choices=["sub", "add"], help="")
+    parser.add_argument("-m", "--mode", default="sub", choices=["sub", "add"],
+                        help="Which mode (adding/subtracting) of hints to use. This refers to enabling and disabling.")
     args = parser.parse_args()
 
     if not os.path.exists(args.queries):

@@ -18,6 +18,7 @@ for i in "${integers[@]}"; do
         echo "Running FASTgres prediction at split: $j_int, seed: $i"
         save_name="<save_path/save_name>_${j_int}_seed_${i}.csv"
 
+        # leave -ecp if no queries were pre-encoded -> note this might take longer for more combinations
         python evaluate_workload_simple.py "$query_path" -o "$save_name" -c "$config_path" -db "$db_name" \
         -a "$archive_path" "$([ $use_contexts = true ] && echo "-uc")" -ts "$j" -stats "$statistics" \
         -ecp "$encoded_query_path" -s "$i"
